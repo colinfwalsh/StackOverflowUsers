@@ -23,18 +23,18 @@ class UserListViewController: UIViewController {
         
         _viewModel
             .getIsLoading()
-            .drive(onNext: { [unowned self] in
-                self.loadingIndicator.isHidden = !$0
-            }).disposed(by: _disposeBag)
-        
-        DispatchQueue.main.async {
-            self._viewModel
-                .getUserList()
-                .drive(self.tableView.rx.items(cellIdentifier: "userCell", cellType: UserTableViewCell.self)) {
-                    row, viewModel, cell in
-                    cell.setUIWithViewModel(viewModel)
-            }.disposed(by: self._disposeBag)
-        }
+            .drive(onNext: {[unowned self] in
+                self.loadingIndicator.isHidden = !$0})
+            .disposed(by: _disposeBag)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self._viewModel
+            .getUserList()
+            .drive(self.tableView.rx.items(cellIdentifier: "userCell",
+                                           cellType: UserTableViewCell.self))
+            {row, viewModel, cell in cell.setUIWithViewModel(viewModel)}
+            .disposed(by: self._disposeBag)
     }
 }
 

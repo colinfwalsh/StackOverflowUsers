@@ -29,19 +29,18 @@ class UserTableViewCell: UITableViewCell {
     
     func setUIWithViewModel(_ viewModel: UserViewModel) {
         
-        profileImageView.layer.cornerRadius = 10
-        profileImageView.layer.borderWidth = 1
-        profileImageView.layer.borderColor = UIColor.blue.cgColor
-        
         userNameLabel.text = viewModel.getDisplayName()
         goldLabel.text = String(viewModel.getGoldBadgeCount())
         silverLabel.text = String(viewModel.getSilverBadgeCount())
         bronzeLabel.text = String(viewModel.getBronzeBadgeCount())
         
-        self.profileImageView.kf.indicatorType = .activity
-        Observable.of(viewModel.getProfileUrl())
+        Observable.of(viewModel.getProfileUrl()!)
+            .flatMapLatest { KingfisherManager.shared.rx.retrieveImage(with: $0) }
             .observeOn(MainScheduler.instance)
-            .bind(to: self.profileImageView.kf.rx.image(options: [.alsoPrefetchToMemory, .forceTransition]))
-        .disposed(by: _disposeBag)
+            .subscribe (onNext: {[unowned self] in
+                self.profileImageView.kf.indicatorType = .activity
+                self.profileImageView.maskCircle(anyImage: $0)
+            })
+            .disposed(by: _disposeBag)
     }
 }
