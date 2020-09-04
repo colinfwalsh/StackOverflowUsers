@@ -34,11 +34,14 @@ class UserTableViewCell: UITableViewCell {
         silverLabel.text = String(viewModel.getSilverBadgeCount())
         bronzeLabel.text = String(viewModel.getBronzeBadgeCount())
         
+        profileImageView.kf.indicatorType = .activity
         Observable.of(viewModel.getProfileUrl()!)
-            .flatMapLatest { KingfisherManager.shared.rx.retrieveImage(with: $0) }
+            .flatMapLatest { KingfisherManager
+                                .shared
+                                .rx
+                                .retrieveImage(with: $0) }
             .observeOn(MainScheduler.instance)
             .subscribe (onNext: {[unowned self] in
-                self.profileImageView.kf.indicatorType = .activity
                 self.profileImageView.maskCircle(anyImage: $0)
             })
             .disposed(by: _disposeBag)
