@@ -11,7 +11,7 @@
 		620FFEC91407E05BF08C7CE5 /* Pods_StackOverflowUsers_StackOverflowUsersUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1527DCF00E4605CDC32B83D4 /* Pods_StackOverflowUsers_StackOverflowUsersUITests.framework */; };
 		6AF30BA42502868C00B2DEB3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF30BA32502868C00B2DEB3 /* AppDelegate.swift */; };
 		6AF30BA62502868C00B2DEB3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF30BA52502868C00B2DEB3 /* SceneDelegate.swift */; };
-		6AF30BA82502868C00B2DEB3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF30BA72502868C00B2DEB3 /* ViewController.swift */; };
+		6AF30BA82502868C00B2DEB3 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF30BA72502868C00B2DEB3 /* UserListViewController.swift */; };
 		6AF30BAB2502868C00B2DEB3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AF30BA92502868C00B2DEB3 /* Main.storyboard */; };
 		6AF30BAD2502868D00B2DEB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AF30BAC2502868D00B2DEB3 /* Assets.xcassets */; };
 		6AF30BB02502868D00B2DEB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AF30BAE2502868D00B2DEB3 /* LaunchScreen.storyboard */; };
@@ -51,7 +51,7 @@
 		6AF30BA02502868C00B2DEB3 /* StackOverflowUsers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StackOverflowUsers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AF30BA32502868C00B2DEB3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AF30BA52502868C00B2DEB3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6AF30BA72502868C00B2DEB3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6AF30BA72502868C00B2DEB3 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		6AF30BAA2502868C00B2DEB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6AF30BAC2502868D00B2DEB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AF30BAF2502868D00B2DEB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 				6AF30BA52502868C00B2DEB3 /* SceneDelegate.swift */,
 				6AF30BD32502870700B2DEB3 /* SOClient.swift */,
 				6AF30BD9250288D200B2DEB3 /* SOModels.swift */,
-				6AF30BA72502868C00B2DEB3 /* ViewController.swift */,
+				6AF30BA72502868C00B2DEB3 /* UserListViewController.swift */,
 				6AF30BDF2502A53000B2DEB3 /* UserViewModel.swift */,
 				6AF30BDD2502A50200B2DEB3 /* UserListViewModel.swift */,
 				6AF30BDB250292B300B2DEB3 /* UserTableViewCell.swift */,
@@ -428,7 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AF30BA82502868C00B2DEB3 /* ViewController.swift in Sources */,
+				6AF30BA82502868C00B2DEB3 /* UserListViewController.swift in Sources */,
 				6AF30BD42502870700B2DEB3 /* SOClient.swift in Sources */,
 				6AF30BDA250288D200B2DEB3 /* SOModels.swift in Sources */,
 				6AF30BE02502A53000B2DEB3 /* UserViewModel.swift in Sources */,

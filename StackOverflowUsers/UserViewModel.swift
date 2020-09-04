@@ -15,23 +15,37 @@ class UserViewModel {
         _model = model
     }
     
-    func getProfileUrl() -> URL {
-        return URL(string: _model.profileImage)!
+    func getProfileUrl() -> URL? {
+        guard let profileString = _model.profileImage else {return nil}
+        return URL(string: profileString)
     }
     
     func getDisplayName() -> String {
-        return _model.displayName
+        guard let displayName = _model.displayName else {return "None"}
+        return displayName
     }
     
     func getGoldBadgeCount() -> Int {
-        return _model.badgeCounts.gold
+        guard let badgeCounts = _model.badgeCounts,
+              let gold = badgeCounts.gold
+        else {return -1}
+        
+        return gold
     }
     
     func getSilverBadgeCount() -> Int {
-        return _model.badgeCounts.silver
+        guard let badgeCounts = _model.badgeCounts,
+              let silver = badgeCounts.silver
+        else {return -1}
+            
+        return silver
     }
     
     func getBronzeBadgeCount() -> Int {
-        return _model.badgeCounts.bronze
+        guard let badgeCounts = _model.badgeCounts,
+              let bronze = badgeCounts.bronze
+        else {return -1}
+        
+        return bronze
     }
 }

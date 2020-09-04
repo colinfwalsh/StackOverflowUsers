@@ -10,18 +10,18 @@ import Foundation
 
 
 struct SOData: Decodable {
-    let items: [SOUser]
+    let items: [SOUser?]
 }
 
 struct SOUser: Decodable {
-    let badgeCounts: SOBadges
-    let accountId: Int
-    let profileImage: String
-    let displayName: String
+    let badgeCounts: SOBadges?
+    let accountId: Int?
+    let profileImage: String?
+    let displayName: String?
 }
 
 struct SOBadges: Decodable {
-    let bronze: Int
-    let silver: Int
-    let gold: Int
+    let bronze: Int?
+    let silver: Int?
+    let gold: Int?
 }

@@ -22,7 +22,13 @@ class UserListViewModel {
             self._isLoading.accept(false)
             switch result {
             case .success(let userData):
-                let userMap = userData.items.map {UserViewModel(model: $0)}
+                
+                let userMap =
+                    userData
+                        .items
+                        .compactMap {$0}
+                        .map {UserViewModel(model: $0)}
+                
                 self._userList.accept(userMap)
             case .failure(let error):
                 print(error.error_message)

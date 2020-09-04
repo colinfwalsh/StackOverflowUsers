@@ -19,11 +19,12 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var bronzeLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     
-    private let _disposeBag = DisposeBag()
+    private var _disposeBag = DisposeBag()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self._disposeBag = DisposeBag()
     }
     
     func setUIWithViewModel(_ viewModel: UserViewModel) {
@@ -42,9 +43,5 @@ class UserTableViewCell: UITableViewCell {
             .observeOn(MainScheduler.instance)
             .bind(to: self.profileImageView.kf.rx.image(options: [.alsoPrefetchToMemory, .forceTransition]))
         .disposed(by: _disposeBag)
-        
-       //     .flatMapLatest { KingfisherManager.shared.rx.retrieveImage(with: $0) }
-        //.observeOn(MainScheduler.instance)
-        
     }
 }
