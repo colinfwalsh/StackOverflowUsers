@@ -28,8 +28,27 @@ class UserListViewController: UIViewController {
             .disposed(by: _disposeBag)
     }
     
+    func generateAlert() {
+        let alert = UIAlertController(title: "Failure fetching data", message: "Most likely you're having internet connectivity issues.  Hit retry to try fetching again.", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: {_ in
+            self._viewModel.userFetch()
+        }))
+
+        self.present(alert, animated: true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        self._viewModel
+        _viewModel
+            .getDidError()
+            .drive(onNext: {[unowned self] in
+                if $0 {
+                    self.generateAlert()
+                }
+            })
+            .disposed(by: _disposeBag)
+        
+        _viewModel
             .getUserList()
             .drive(self.tableView.rx.items(cellIdentifier: "userCell",
                                            cellType: UserTableViewCell.self))

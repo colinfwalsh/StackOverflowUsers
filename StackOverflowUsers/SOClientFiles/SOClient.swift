@@ -27,6 +27,8 @@ struct SOClient {
         return SOClient.session.rx
             .request(.get, SOClient.requestUrl)
             .responseData()
+            .timeout(DispatchTimeInterval.milliseconds(10000),//DispatchTimeInterval.microseconds(3000000),
+                     scheduler: MainScheduler.instance)
             .mapToObject(ofType: SOData.self)
     }
     

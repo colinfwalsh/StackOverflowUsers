@@ -75,7 +75,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="UserName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2R-ps-Kcy">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="UserName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2R-ps-Kcy">
                                                     <rect key="frame" x="320.5" y="9.5" width="81" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -84,6 +84,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Wp9-aA-p8i" firstAttribute="leading" secondItem="gZc-3D-hMZ" secondAttribute="trailing" constant="20" id="0Ue-M6-RB5"/>
+                                                <constraint firstItem="h2R-ps-Kcy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Xcm-Ad-xC9" secondAttribute="trailing" constant="8" symbolic="YES" id="453-Wi-WYf"/>
                                                 <constraint firstItem="Mys-ST-bZL" firstAttribute="top" secondItem="gZc-3D-hMZ" secondAttribute="bottom" constant="12" id="As0-m0-ons"/>
                                                 <constraint firstItem="gZc-3D-hMZ" firstAttribute="centerY" secondItem="osT-HR-DVM" secondAttribute="centerY" id="INr-0M-qai"/>
                                                 <constraint firstItem="osT-HR-DVM" firstAttribute="top" secondItem="Xcm-Ad-xC9" secondAttribute="top" constant="25" id="QSp-Z9-dow"/>
@@ -114,8 +115,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="0vY-J8-dbR">
-                                <rect key="frame" x="0.0" y="355" width="414" height="507"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="0vY-J8-dbR">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
