@@ -18,14 +18,18 @@ struct SOClient {
      endpoint = ...
      args = [...]
      */
-    static let requestUrl = "https://api.stackexchange.com/2.2/users?page=1&site=stackoverflow"
-    
+    static let baseUrl = "https://api.stackexchange.com/2.2/users?"
+
+    static func generateUrlFor(page: Int) -> String {
+        let pageArg = "page=\(page)&site=stackoverflow"
+        return SOClient.baseUrl + pageArg
+    }
     // Alamofire session
     static let session = Session.default
     
-    static func fetchUsers() -> Observable<ApiResult<SOData, ApiErrorMessage>>{
+    static func fetchUsers(for page: Int) -> Observable<ApiResult<SOData, ApiErrorMessage>>{
         return SOClient.session.rx
-            .request(.get, SOClient.requestUrl)
+            .request(.get, SOClient.generateUrlFor(page: page))
             .responseData()
             .timeout(DispatchTimeInterval.milliseconds(10000),//DispatchTimeInterval.microseconds(3000000),
                      scheduler: MainScheduler.instance)

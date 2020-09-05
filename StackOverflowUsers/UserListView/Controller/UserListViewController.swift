@@ -26,6 +26,7 @@ class UserListViewController: UIViewController {
             .drive(onNext: {[unowned self] in
                 self.loadingIndicator.isHidden = !$0})
             .disposed(by: _disposeBag)
+        
     }
     
     func generateAlert() {
@@ -52,7 +53,12 @@ class UserListViewController: UIViewController {
             .getUserList()
             .drive(self.tableView.rx.items(cellIdentifier: "userCell",
                                            cellType: UserTableViewCell.self))
-            {row, viewModel, cell in cell.setUIWithViewModel(viewModel)}
+            {row, viewModel, cell in
+                cell.setUIWithViewModel(viewModel)
+                if row == self._viewModel.getCurrentUserCount()-5 {
+                    self._viewModel.userFetch()
+                }
+        }
             .disposed(by: self._disposeBag)
     }
 }
