@@ -40,17 +40,20 @@ class UserListViewController: UIViewController {
             })
             .disposed(by: _disposeBag)
         
+        // Needs to be done asynchronously else we get runtime warning
         DispatchQueue.main.async {
             self._viewModel
                 .getUserList()
-                .bind(to: self.tableView.rx.items(cellIdentifier: "userCell",
-                                                  cellType: UserTableViewCell.self))
+                .bind(to:
+                    self.tableView
+                        .rx
+                        .items(cellIdentifier: "userCell",
+                               cellType: UserTableViewCell.self))
                 {row, viewModel, cell in
                     cell.setUIWithViewModel(viewModel)
                     if row == self._viewModel.getCurrentUserCount()-1 {
                         self._viewModel.userFetch()
-                    }
-            }
+                    }}
             .disposed(by: self._disposeBag)
         }
     }

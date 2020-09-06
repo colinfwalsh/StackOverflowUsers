@@ -28,8 +28,9 @@ struct SOClient {
     // Alamofire session
     static let session = Session.default
     
-    /* Fetch the users for a given page, SOClient does not care about keeping track of the page
-       its only concern is returning the result for a given page.
+    /*
+     Fetch the users for a given page, SOClient does not care about keeping track of the page
+     its only concern is returning the result for a given page.
      */
     static func fetchUsers(for page: Int) -> Observable<ApiResult<SOData, ApiErrorMessage>>{
         return SOClient.session.rx

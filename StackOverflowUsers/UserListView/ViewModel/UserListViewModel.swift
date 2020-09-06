@@ -52,6 +52,7 @@ class UserListViewModel {
             })
             .disposed(by: _disposeBag)
     }
+    
     func updatePage() {
         _currentPage.accept(_currentPage.value + 1)
     }

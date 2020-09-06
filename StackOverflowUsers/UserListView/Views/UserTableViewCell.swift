@@ -28,8 +28,13 @@ class UserTableViewCell: UITableViewCell {
     }
     
     func showErrorImage() {
+        guard let questionMarkImage =
+              UIImage(systemName: "questionmark")
+        else {return}
+        
         self.profileImageView
-            .maskCircle(anyImage: UIImage(systemName: "questionmark")!)
+            .maskCircle(anyImage:
+                questionMarkImage)
     }
     
     func setUIWithViewModel(_ viewModel: UserViewModel) {
@@ -55,7 +60,6 @@ class UserTableViewCell: UITableViewCell {
                 viewModel.updateIsLoading(value: false)
                 return}
         
-        // Initially I was using RxKingfisher, but it was causing runtime errors, so I opted for the normal library instead
         kfManager
             .retrieveImage(with: url,
                            options: nil) {[unowned self] result in
