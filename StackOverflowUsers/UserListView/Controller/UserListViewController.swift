@@ -55,12 +55,15 @@ class UserListViewController: UIViewController {
         }
     }
     
-    func generateAlert(with title: String) {
-        let alert = UIAlertController(title: title, message: "Most likely you're having internet connectivity issues.  Hit retry to try fetching again.", preferredStyle: .alert)
+    func generateAlert(with message: String) {
+        let alert = UIAlertController(title: "Error",
+                                      message: message.capitalized,
+                                      preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: {_ in
-            self._viewModel.userFetch()
-        }))
+        alert.addAction(UIAlertAction(title: "Retry",
+                                      style: .default,
+                                      handler: {[unowned self] _ in
+                                        self._viewModel.userFetch()}))
         
         self.present(alert, animated: true)
     }

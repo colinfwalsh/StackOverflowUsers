@@ -20,11 +20,16 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     
     private(set) var _disposeBag = DisposeBag()
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         _disposeBag = DisposeBag()
         
+    }
+    
+    func showErrorImage() {
+        self.profileImageView
+            .maskCircle(anyImage: UIImage(systemName: "questionmark")!)
     }
     
     func setUIWithViewModel(_ viewModel: UserViewModel) {
@@ -45,7 +50,10 @@ class UserTableViewCell: UITableViewCell {
         let kfManager = KingfisherManager.shared
         
         guard let url = viewModel.getProfileUrl()
-            else {return}
+            else {
+                self.showErrorImage()
+                viewModel.updateIsLoading(value: false)
+                return}
         
         // Initially I was using RxKingfisher, but it was causing runtime errors, so I opted for the normal library instead
         kfManager
@@ -59,8 +67,7 @@ class UserTableViewCell: UITableViewCell {
                                     self.profileImageView
                                         .maskCircle(anyImage: value.image)
                                 case .failure(let error):
-                                    self.profileImageView
-                                        .maskCircle(anyImage: UIImage(systemName: "questionmark")!)
+                                    self.showErrorImage()
                                     print(error)
                                 }
                             }
