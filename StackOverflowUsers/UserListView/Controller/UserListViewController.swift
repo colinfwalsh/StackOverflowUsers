@@ -46,7 +46,7 @@ class UserListViewController: UIViewController {
                 .bind(to: self.tableView.rx.items(cellIdentifier: "userCell",
                                                   cellType: UserTableViewCell.self))
                 {row, viewModel, cell in
-                    cell.setViewModel(viewModel)
+                    cell.setUIWithViewModel(viewModel)
                     if row == self._viewModel.getCurrentUserCount()-1 {
                         self._viewModel.userFetch()
                     }

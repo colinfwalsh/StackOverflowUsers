@@ -20,27 +20,11 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     
     private(set) var _disposeBag = DisposeBag()
-    private let _viewModel: BehaviorRelay<UserViewModel?> = BehaviorRelay(value: nil)
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         _disposeBag = DisposeBag()
         
-    }
-    
-    override func layoutSubviews() {
-        _viewModel
-            .asDriver()
-            .drive(onNext: {[unowned self] in
-                if let vm = $0 {
-                    self.setUIWithViewModel(vm)
-                }
-            })
-            .disposed(by: _disposeBag)
-    }
-    
-    func setViewModel(_ viewModel: UserViewModel) {
-        _viewModel.accept(viewModel)
     }
     
     func setUIWithViewModel(_ viewModel: UserViewModel) {
