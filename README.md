@@ -1,6 +1,12 @@
 # StackOverflowUsers Take-Home
 
-Thanks so much for giving me this oppurtunity!  I really enjoyed this take home project and I hope you appreciate the work that went in.  All requirements are complete and are listed below.
+Thanks so much for giving me this opportunity!  I really enjoyed this take home project and I hope you appreciate the work that went in.  All requirements are complete and are listed below.
+
+## Installation
+
+```
+pod install
+```
 
 ## Fetching Data
 
@@ -8,7 +14,7 @@ To fetch the data I used RxAlamofire and made an extension to automatically crea
 
 ## TableView
 
-The tableView is set up using RxCocoa (since we're only dealing with one type of cell), so there was no need to create a unique datasource or delegate in order to organize our tableView.  In addition, the cells are configured using a specific method that takes in a ViewModel and assigns data to labels based on the data in the viewModel.  Since there is some observables that are created within this method, our dispose bag is re-initialized in the cell's "prepareForResuse" method in order to keep our memory imprint low by deallocating observable streams of cells that are off screen.
+The tableView is set up using RxCocoa (since we're only dealing with one type of cell), so there was no need to create a unique datasource or delegate in order to organize our tableView.  In addition, the cells are configured using a specific method that takes in a ViewModel and assigns data to labels based on the data in the viewModel.  Since there is some observables that are created within this method, our dispose bag is re-initialized in the cell's "prepareForReuse" method in order to keep our memory imprint low by deallocating observable streams of cells that are off screen.
 
 ## Cell Display
 
@@ -26,12 +32,10 @@ All expensive work is done in the background so there is no lockup in the main t
 
 The app uses MVVM in order to handle all of the business logic that is not related to UI.  Anything that has to do with downloading data, configuring models, or anything similar are handled by the ViewModels.  Anything that requires knowledge of UIKit is handled by the respective views.
 
-## Extra Bonus
+## Extras 
 
-I also went ahead and implemented Pagination into the app, so you can infinitely scroll and download new users when you reach the end of the list.  I figured this would be a cool feature to implement and I wanted something unique to stand out from other applciants. **NOTE: Please be careful about scrolling too fast as you may overload the requests to StackOverflow.  This results in a 10 hour timeout if this happens.**
+I also went ahead and implemented Pagination into the app, so you can infinitely scroll and download new users when you reach the end of the list.  I figured this would be a cool feature to implement and I wanted something unique to stand out from other applicants. **NOTE: Please be careful about scrolling too fast as you may overload the requests to StackOverflow.  This results in a 10 hour timeout if this happens.**
 
 ## Closing thoughts
 
 I had a great time with this project and hope you enjoyed looking at my submission.  If you have any questions please feel free to email me with any concerns you have.  Looking forward to your response!
-
-

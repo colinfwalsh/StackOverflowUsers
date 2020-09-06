@@ -21,6 +21,10 @@ class UserListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupSubscriptions()
+    }
+    
+    func setupSubscriptions() {
         _viewModel
             .getIsLoading()
             .drive(onNext: {[unowned self] in
@@ -36,14 +40,13 @@ class UserListViewController: UIViewController {
             })
             .disposed(by: _disposeBag)
         
-        
         DispatchQueue.main.async {
             self._viewModel
                 .getUserList()
-                .drive(self.tableView.rx.items(cellIdentifier: "userCell",
-                                               cellType: UserTableViewCell.self))
+                .bind(to: self.tableView.rx.items(cellIdentifier: "userCell",
+                                                  cellType: UserTableViewCell.self))
                 {row, viewModel, cell in
-                    cell.setUIWithViewModel(viewModel)
+                    cell.setViewModel(viewModel)
                     if row == self._viewModel.getCurrentUserCount()-1 {
                         self._viewModel.userFetch()
                     }

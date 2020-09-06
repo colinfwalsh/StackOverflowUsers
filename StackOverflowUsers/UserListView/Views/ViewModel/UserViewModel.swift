@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class UserViewModel {
     private let _model: SOUser
@@ -40,7 +41,7 @@ class UserViewModel {
         guard let badgeCounts = _model.badgeCounts,
               let silver = badgeCounts.silver
         else {return -1}
-            
+        
         return silver
     }
     
@@ -61,4 +62,5 @@ class UserViewModel {
             .observeOn(MainScheduler.asyncInstance)
             .asDriver(onErrorDriveWith: Driver.empty())
     }
+    
 }

@@ -60,8 +60,8 @@ class UserListViewModel {
         return _errorMessage.asDriver()
     }
 
-    func getUserList() -> Driver<[UserViewModel]> {
-        return _userList.asDriver()
+    func getUserList() -> Observable<[UserViewModel]> {
+        return _userList.observeOn(MainScheduler.asyncInstance).asObservable()
     }
     
     func getIsLoading() -> Driver<Bool> {
