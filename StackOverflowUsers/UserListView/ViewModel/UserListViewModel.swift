@@ -13,7 +13,7 @@ import RxCocoa
 class UserListViewModel {
     private let _userList: BehaviorRelay<[UserViewModel]> = BehaviorRelay(value: [])
     private let _currentPage: BehaviorRelay<Int> = BehaviorRelay(value: 1)
-    private let _didError = BehaviorRelay(value: false)
+    private let _errorMessage: BehaviorRelay<ApiErrorMessage?> = BehaviorRelay(value: nil)
     private let _isLoading = BehaviorRelay(value: false)
     private let _disposeBag = DisposeBag()
     
@@ -25,6 +25,7 @@ class UserListViewModel {
         _isLoading.accept(true)
         SOClient
             .fetchUsers(for: _currentPage.value)
+            .observeOn(MainScheduler.asyncInstance)
             .catchErrorJustReturn (
                 ApiResult.init(error:
                     ApiErrorMessage(error_message:
@@ -46,7 +47,7 @@ class UserListViewModel {
                     self.updatePage()
                 case .failure(let error):
                     print(error.error_message)
-                    self._didError.accept(true)
+                    self._errorMessage.accept(error)
                 }
             })
             .disposed(by: _disposeBag)
@@ -55,8 +56,8 @@ class UserListViewModel {
         _currentPage.accept(_currentPage.value + 1)
     }
     
-    func getDidError() -> Driver<Bool> {
-        return _didError.asDriver()
+    func getErrorMessage() -> Driver<ApiErrorMessage?> {
+        return _errorMessage.asDriver()
     }
 
     func getUserList() -> Driver<[UserViewModel]> {

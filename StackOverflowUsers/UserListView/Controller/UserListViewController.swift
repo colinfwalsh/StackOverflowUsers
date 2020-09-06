@@ -28,10 +28,10 @@ class UserListViewController: UIViewController {
             .disposed(by: _disposeBag)
         
         _viewModel
-            .getDidError()
+            .getErrorMessage()
             .drive(onNext: {[unowned self] in
-                if $0 {
-                    self.generateAlert()
+                if let message = $0 {
+                    self.generateAlert(with: message.error_message)
                 }
             })
             .disposed(by: _disposeBag)
@@ -43,7 +43,7 @@ class UserListViewController: UIViewController {
                                                cellType: UserTableViewCell.self))
                 {row, viewModel, cell in
                     cell.setUIWithViewModel(viewModel)
-                    if row == self._viewModel.getCurrentUserCount()-5 {
+                    if row == self._viewModel.getCurrentUserCount()-1 {
                         self._viewModel.userFetch()
                     }
             }
@@ -53,8 +53,8 @@ class UserListViewController: UIViewController {
         
     }
     
-    func generateAlert() {
-        let alert = UIAlertController(title: "Failure fetching data", message: "Most likely you're having internet connectivity issues.  Hit retry to try fetching again.", preferredStyle: .alert)
+    func generateAlert(with title: String) {
+        let alert = UIAlertController(title: title, message: "Most likely you're having internet connectivity issues.  Hit retry to try fetching again.", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: {_ in
             self._viewModel.userFetch()

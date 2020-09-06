@@ -33,7 +33,7 @@
                                                         <constraint firstAttribute="width" constant="125" id="lxt-ju-SNl"/>
                                                     </constraints>
                                                 </imageView>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vnU-ub-mJI">
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vnU-ub-mJI">
                                                     <rect key="frame" x="56.5" y="69" width="37" height="37"/>
                                                 </activityIndicatorView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" image="star.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="osT-HR-DVM">
@@ -122,19 +122,17 @@
                                 </prototypes>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="0vY-J8-dbR">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="188.5" y="434.5" width="37" height="37"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="PMF-Ac-Axo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4ti-cO-2JF"/>
-                            <constraint firstItem="0vY-J8-dbR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5mt-G2-laL"/>
-                            <constraint firstItem="0vY-J8-dbR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="LcY-Ri-0bZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PMF-Ac-Axo" secondAttribute="bottom" id="WTr-i8-cLX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0vY-J8-dbR" secondAttribute="trailing" id="ec1-Rx-okB"/>
                             <constraint firstItem="PMF-Ac-Axo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kKq-Rv-HEL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PMF-Ac-Axo" secondAttribute="trailing" id="mVp-1U-41k"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0vY-J8-dbR" secondAttribute="bottom" id="wc7-N9-b5i"/>
+                            <constraint firstItem="0vY-J8-dbR" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="sNF-we-sPk"/>
+                            <constraint firstItem="0vY-J8-dbR" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="scg-V8-El5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

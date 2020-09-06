@@ -25,7 +25,6 @@
 		6AF30BDE2502A50200B2DEB3 /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF30BDD2502A50200B2DEB3 /* UserListViewModel.swift */; };
 		6AF30BE02502A53000B2DEB3 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF30BDF2502A53000B2DEB3 /* UserViewModel.swift */; };
 		6AF30BE22502ADF100B2DEB3 /* UIImageView+ImageMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF30BE12502ADF100B2DEB3 /* UIImageView+ImageMask.swift */; };
-		6AF30BEB2502CDB000B2DEB3 /* UserErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF30BEA2502CDB000B2DEB3 /* UserErrorTableViewCell.swift */; };
 		AB2FD7602D521CF2A2BF592C /* Pods_StackOverflowUsersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0074F7A4A9829A8A33F170E1 /* Pods_StackOverflowUsersTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,7 +71,6 @@
 		6AF30BDD2502A50200B2DEB3 /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
 		6AF30BDF2502A53000B2DEB3 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		6AF30BE12502ADF100B2DEB3 /* UIImageView+ImageMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageMask.swift"; sourceTree = "<group>"; };
-		6AF30BEA2502CDB000B2DEB3 /* UserErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserErrorTableViewCell.swift; sourceTree = "<group>"; };
 		88B672EC90F8F57123270437 /* Pods-StackOverflowUsersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackOverflowUsersTests.debug.xcconfig"; path = "Target Support Files/Pods-StackOverflowUsersTests/Pods-StackOverflowUsersTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89C224675092D486A90A9DF2 /* Pods-StackOverflowUsers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackOverflowUsers.release.xcconfig"; path = "Target Support Files/Pods-StackOverflowUsers/Pods-StackOverflowUsers.release.xcconfig"; sourceTree = "<group>"; };
 		C2E7390A6632CE863DCF6553 /* Pods-StackOverflowUsers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StackOverflowUsers.debug.xcconfig"; path = "Target Support Files/Pods-StackOverflowUsers/Pods-StackOverflowUsers.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				6AF30BDB250292B300B2DEB3 /* UserTableViewCell.swift */,
-				6AF30BEA2502CDB000B2DEB3 /* UserErrorTableViewCell.swift */,
 				6AF30BE82502B1B600B2DEB3 /* ViewModel */,
 			);
 			path = Views;
@@ -497,7 +494,6 @@
 				6AF30BE02502A53000B2DEB3 /* UserViewModel.swift in Sources */,
 				6AF30BA42502868C00B2DEB3 /* AppDelegate.swift in Sources */,
 				6AF30BDE2502A50200B2DEB3 /* UserListViewModel.swift in Sources */,
-				6AF30BEB2502CDB000B2DEB3 /* UserErrorTableViewCell.swift in Sources */,
 				6AF30BDC250292B300B2DEB3 /* UserTableViewCell.swift in Sources */,
 				6AF30BA62502868C00B2DEB3 /* SceneDelegate.swift in Sources */,
 				6AF30BD8250287FE00B2DEB3 /* APIHelpers.swift in Sources */,

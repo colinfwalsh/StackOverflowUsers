@@ -20,15 +20,14 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var loadingActivityView: UIActivityIndicatorView!
     @IBOutlet weak var profileImageView: UIImageView!
     
-    private var _disposeBag = DisposeBag()
+    private(set) var _disposeBag = DisposeBag()
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        _disposeBag = DisposeBag()
     }
     
     func setUIWithViewModel(_ viewModel: UserViewModel) {
-        
-        self._disposeBag = DisposeBag()
         
         userNameLabel.text = viewModel.getDisplayName()
         goldLabel.text = String(viewModel.getGoldBadgeCount())
@@ -42,14 +41,18 @@ class UserTableViewCell: UITableViewCell {
             .disposed(by: _disposeBag)
         
         viewModel.updateIsLoading(value: true)
+        
         Observable.of(viewModel.getProfileUrl()!)
             .observeOn(MainScheduler.asyncInstance)
             .flatMapLatest { KingfisherManager
                                 .shared
                                 .rx
-                                .retrieveImage(with: $0) }
+                .retrieveImage(with: $0, options: [.backgroundDecode,
+                                                   .forceTransition,
+                                                   .processingQueue(.mainAsync)
+                                                   ]) }
             .asDriver(onErrorDriveWith: Driver.empty())
-            .drive (onNext: {[unowned self, viewModel] in
+            .drive (onNext: {[unowned self, unowned viewModel] in
                 self.profileImageView.maskCircle(anyImage: $0)
                 viewModel.updateIsLoading(value: false)
             })
