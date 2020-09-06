@@ -47,10 +47,10 @@ class UserTableViewCell: UITableViewCell {
             .flatMapLatest { KingfisherManager
                                 .shared
                                 .rx
-                .retrieveImage(with: $0, options: [.backgroundDecode,
-                                                   .forceTransition,
-                                                   .processingQueue(.mainAsync)
-                                                   ]) }
+                .retrieveImage(with: $0,
+                               options: [.backgroundDecode,
+                                         .forceTransition,
+                                         .processingQueue(.mainAsync)])}
             .asDriver(onErrorDriveWith: Driver.empty())
             .drive (onNext: {[unowned self, unowned viewModel] in
                 self.profileImageView.maskCircle(anyImage: $0)

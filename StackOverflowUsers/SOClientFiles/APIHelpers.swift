@@ -8,6 +8,10 @@
 
 import Foundation
 
+
+/*
+ Helper functions that are consumed in our Observable+Codable extension.  Makes processing requests easier.
+ */
 enum ApiResult<Value, Error>{
     case success(Value)
     case failure(Error)

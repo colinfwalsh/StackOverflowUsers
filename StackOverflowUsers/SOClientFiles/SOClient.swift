@@ -24,14 +24,18 @@ struct SOClient {
         let pageArg = "page=\(page)&site=stackoverflow"
         return SOClient.baseUrl + pageArg
     }
+    
     // Alamofire session
     static let session = Session.default
     
+    /* Fetch the users for a given page, SOClient does not care about keeping track of the page
+       its only concern is returning the result for a given page.
+     */
     static func fetchUsers(for page: Int) -> Observable<ApiResult<SOData, ApiErrorMessage>>{
         return SOClient.session.rx
             .request(.get, SOClient.generateUrlFor(page: page))
             .responseData()
-            .timeout(DispatchTimeInterval.milliseconds(10000),//DispatchTimeInterval.microseconds(3000000),
+            .timeout(DispatchTimeInterval.milliseconds(10000), // Timeout after 10 seconds
                      scheduler: MainScheduler.instance)
             .mapToObject(ofType: SOData.self)
     }

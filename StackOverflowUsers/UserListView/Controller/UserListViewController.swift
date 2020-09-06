@@ -36,6 +36,7 @@ class UserListViewController: UIViewController {
             })
             .disposed(by: _disposeBag)
         
+        
         DispatchQueue.main.async {
             self._viewModel
                 .getUserList()
@@ -49,8 +50,6 @@ class UserListViewController: UIViewController {
             }
             .disposed(by: self._disposeBag)
         }
-        
-        
     }
     
     func generateAlert(with title: String) {
