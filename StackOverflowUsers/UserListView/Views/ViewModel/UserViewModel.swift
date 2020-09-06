@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class UserViewModel {
     private let _model: SOUser
+    private let _isLoadingImage = BehaviorRelay(value: false)
     
     init(model: SOUser) {
         _model = model
@@ -47,5 +50,15 @@ class UserViewModel {
         else {return -1}
         
         return bronze
+    }
+    
+    func updateIsLoading(value: Bool) {
+        _isLoadingImage.accept(value)
+    }
+    
+    func getIsLoadingImage() -> Driver<Bool> {
+        return _isLoadingImage
+            .observeOn(MainScheduler.asyncInstance)
+            .asDriver(onErrorDriveWith: Driver.empty())
     }
 }

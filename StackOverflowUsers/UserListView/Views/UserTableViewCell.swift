@@ -17,32 +17,41 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var goldLabel: UILabel!
     @IBOutlet weak var silverLabel: UILabel!
     @IBOutlet weak var bronzeLabel: UILabel!
+    @IBOutlet weak var loadingActivityView: UIActivityIndicatorView!
     @IBOutlet weak var profileImageView: UIImageView!
     
     private var _disposeBag = DisposeBag()
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
-        self._disposeBag = DisposeBag()
     }
     
     func setUIWithViewModel(_ viewModel: UserViewModel) {
+        
+        self._disposeBag = DisposeBag()
         
         userNameLabel.text = viewModel.getDisplayName()
         goldLabel.text = String(viewModel.getGoldBadgeCount())
         silverLabel.text = String(viewModel.getSilverBadgeCount())
         bronzeLabel.text = String(viewModel.getBronzeBadgeCount())
         
-        profileImageView.kf.indicatorType = .activity
+        viewModel
+            .getIsLoadingImage()
+            .drive(onNext: {[unowned self] in
+                self.loadingActivityView.isHidden = !$0})
+            .disposed(by: _disposeBag)
+        
+        viewModel.updateIsLoading(value: true)
         Observable.of(viewModel.getProfileUrl()!)
+            .observeOn(MainScheduler.asyncInstance)
             .flatMapLatest { KingfisherManager
                                 .shared
                                 .rx
                                 .retrieveImage(with: $0) }
-            .observeOn(MainScheduler.instance)
-            .subscribe (onNext: {[unowned self] in
+            .asDriver(onErrorDriveWith: Driver.empty())
+            .drive (onNext: {[unowned self, viewModel] in
                 self.profileImageView.maskCircle(anyImage: $0)
+                viewModel.updateIsLoading(value: false)
             })
             .disposed(by: _disposeBag)
     }
