@@ -8,8 +8,8 @@ target 'StackOverflowUsers' do
   # Pods for StackOverflowUsers
   pod 'RxSwift', '~> 5.0'
   pod 'RxCocoa', '~> 5.0'
+  pod 'Kingfisher', '~> 5.0'
   pod 'RxAlamofire'
-  pod 'RxKingfisher'
 
   target 'StackOverflowUsersTests' do
     inherit! :search_paths

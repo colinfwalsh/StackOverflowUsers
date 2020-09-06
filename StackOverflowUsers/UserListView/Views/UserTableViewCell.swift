@@ -8,7 +8,6 @@
 
 import UIKit
 import Kingfisher
-import RxKingfisher
 import RxSwift
 import RxCocoa
 
@@ -47,9 +46,9 @@ class UserTableViewCell: UITableViewCell {
     func setUIWithViewModel(_ viewModel: UserViewModel) {
         
         userNameLabel.text = viewModel.getDisplayName()
-        goldLabel.text = String(viewModel.getGoldBadgeCount())
-        silverLabel.text = String(viewModel.getSilverBadgeCount())
-        bronzeLabel.text = String(viewModel.getBronzeBadgeCount())
+        goldLabel.text = viewModel.getGoldBadgeCount()
+        silverLabel.text = viewModel.getSilverBadgeCount()
+        bronzeLabel.text = viewModel.getBronzeBadgeCount()
         
         viewModel
             .getIsLoadingImage()
@@ -60,19 +59,27 @@ class UserTableViewCell: UITableViewCell {
         viewModel.updateIsLoading(value: true)
         
         let kfManager = KingfisherManager.shared
-        Observable.of(viewModel.getProfileUrl()!)
-            .flatMapLatest {[unowned kfManager] in
-                kfManager
-                    .rx
-                    .retrieveImage(with: $0,
-                                   options: [
-                                    .forceTransition,
-                    ])}
-            .observeOn(MainScheduler.asyncInstance)
-            .subscribe (onNext: {[unowned self, unowned viewModel] in
-                self.profileImageView.maskCircle(anyImage: $0)
-                viewModel.updateIsLoading(value: false)
-            })
-            .disposed(by: _disposeBag)
+        
+        guard let url = viewModel.getProfileUrl()
+            else {return}
+        
+        // Initially I was using RxKingfisher, but it was causing runtime errors, so I opted for the normal library instead
+        kfManager
+            .retrieveImage(with: url,
+                           options: nil) {[unowned self] result in
+                            
+                            DispatchQueue.main.async {
+                                viewModel.updateIsLoading(value: false)
+                                switch result {
+                                case .success(let value):
+                                    self.profileImageView
+                                        .maskCircle(anyImage: value.image)
+                                case .failure(let error):
+                                    self.profileImageView
+                                        .maskCircle(anyImage: UIImage(systemName: "questionmark")!)
+                                    print(error)
+                                }
+                            }
+        }
     }
 }

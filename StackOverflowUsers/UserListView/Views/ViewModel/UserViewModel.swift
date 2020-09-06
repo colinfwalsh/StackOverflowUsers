@@ -29,28 +29,28 @@ class UserViewModel {
         return displayName
     }
     
-    func getGoldBadgeCount() -> Int {
+    func getGoldBadgeCount() -> String {
         guard let badgeCounts = _model.badgeCounts,
               let gold = badgeCounts.gold
-        else {return -1}
+        else {return String(-1)}
         
-        return gold
+        return String(gold)
     }
     
-    func getSilverBadgeCount() -> Int {
+    func getSilverBadgeCount() -> String {
         guard let badgeCounts = _model.badgeCounts,
               let silver = badgeCounts.silver
-        else {return -1}
+        else {return String(-1)}
         
-        return silver
+        return String(silver)
     }
     
-    func getBronzeBadgeCount() -> Int {
+    func getBronzeBadgeCount() -> String {
         guard let badgeCounts = _model.badgeCounts,
               let bronze = badgeCounts.bronze
-        else {return -1}
+        else {return String(-1)}
         
-        return bronze
+        return String(bronze)
     }
     
     func updateIsLoading(value: Bool) {
